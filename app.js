@@ -6,6 +6,8 @@ var express        = require("express"),
     // createDB       = require("./createdb"),
     // seedDB         = require("./seeddb");
 
+app.set("view engine", "ejs");
+
 // Create connection
 var db = mysql.createConnection({
     host     : 'localhost',
@@ -82,6 +84,13 @@ function seedDB() {
 
 function runSQL(sql) {
     db.query(sql, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+    })
+}
+
+function runSQL(sql, post) {
+    db.query(sql, post, (err, result) => {
         if(err) throw err;
         console.log(result);
     })
