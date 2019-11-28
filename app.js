@@ -29,24 +29,26 @@ db.connect((err) => {
 // Uncomment this line to create AND seed the database.
 // seedDB();
 
-/*
+
 // Requiring Routes
 var indexRoutes = require("./routes/index"),
+    restaurantRoutes = require("./routes/restaurant"),
     menuRoutes = require("./routes/menu"),
     ordersRoutes = require("./routes/orders"),
     userRoutes = require("./routes/user"),
     checkoutRoutes = require("./routes/checkout");
 
-app.use("/", indexRoutes);
-app.use("/menu", menuRoutes);
-app.use("/orders", ordersRoutes);
-app.use("/user", userRoutes);
-app.use("/checkout", checkoutRoutes);
-// Redirects all other routes that are not specified
-app.all("*", function(req, res){
-    res.redirect("http://localhost:3000");
-});
-*/
+// app.use("/", indexRoutes);
+app.use("/restaurants", restaurantRoutes);
+// app.use("/menu", menuRoutes);
+// app.use("/orders", ordersRoutes);
+// app.use("/user", userRoutes);
+// app.use("/checkout", checkoutRoutes);
+// // Redirects all other routes that are not specified
+// app.all("*", function(req, res){
+//     res.redirect("http://localhost:3000");
+// });
+
 
 var port = 3000;
 var server = app.listen(port, function(){
