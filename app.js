@@ -10,7 +10,9 @@ var express        = require("express"),
 var db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'root1234',
+    password : 'password',
+    insecureAuth : true,
+    // Comment the below line out when no db is created yet.
     database : 'restaurant471'
 });
 
@@ -24,15 +26,6 @@ db.connect((err) => {
 // createDB();
 // Uncomment this line to create AND seed the database.
 // seedDB();
-
-app.get('/createdb', (req, res) => {
-    let sql = 'CREATE DATABASE restaurant471';
-    db.query(sql, (err, result) => {
-        if(err) throw err;
-        console.log(result);
-        res.send('db created');
-    });
-});
 
 /*
 // Requiring Routes
@@ -59,21 +52,26 @@ var server = app.listen(port, function(){
 });
 
 function createDB() {
-    let sql = 'CREATE DATABASE restaurant471';
+    let sql = 'DROP DATABASE IF EXISTS restaurant471';
     runSQL(sql);
+
+    sql = 'CREATE DATABASE restaurant471';
+    runSQL(sql);
+
+    console.log("Database created.");
 }
 
 function seedDB() {
     // Dropping all tables
-    let sql = 'DROP DATABASE restaurant471';
+    let sql = 'DROP DATABASE IF EXISTS restaurant471';
     runSQL(sql);
     
     sql = 'CREATE DATABASE restaurant471';
     runSQL(sql);
 
     // Seeding table
-    sql = [ {'CREATE TABLE RESTAURANT ( Rstrnt_id varchar(255) NOT NULL, Name varchar(255) NOT NULL, Location varchar(255) NOT NULL, Avg_rate int, Owner_id varchar(255) NOT NULL, PRIMARY KEY (Rstrnt_id), FOREIGN KEY (Owner_id) REFERENCES OWNER(User_id) )'}, 
-            {'CREATE TABLE RESERVATION (Res_id varchar(255) NOT NULL, Rstrnt_id varchar(255) NOT NULL, Guest_count int NOT NULL, Date Date NOT NULL, Cust_id varchar(255) NOT NULL, PRIMARY KEY (Res_id), FOREIGN KEY (Cust_id) REFERENCES CUSTOMER(User_id), FOREIGN KEY (Rstrnt_id) REFERENCES Restaurant(Rstrnt_id) )'}
+    sql = [ 'CREATE TABLE RESTAURANT ( Rstrnt_id varchar(255) NOT NULL, Name varchar(255) NOT NULL, Location varchar(255) NOT NULL, Avg_rate int, Owner_id varchar(255) NOT NULL, PRIMARY KEY (Rstrnt_id), FOREIGN KEY (Owner_id) REFERENCES OWNER(User_id) )', 
+            'CREATE TABLE RESERVATION (Res_id varchar(255) NOT NULL, Rstrnt_id varchar(255) NOT NULL, Guest_count int NOT NULL, Date Date NOT NULL, Cust_id varchar(255) NOT NULL, PRIMARY KEY (Res_id), FOREIGN KEY (Cust_id) REFERENCES CUSTOMER(User_id), FOREIGN KEY (Rstrnt_id) REFERENCES Restaurant(Rstrnt_id) )'
           ];
     sql.forEach((statement) => {
         runSQL(statement);
