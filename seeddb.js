@@ -1,4 +1,4 @@
-var db = require('../db.js');
+var db = require('./db.js');
 
 function runSQL(sql) {
     db.query(sql, (err, result) => {
@@ -22,6 +22,9 @@ function seedDB() {
     sql = 'CREATE DATABASE restaurant471';
     runSQL(sql);
 
+    // Turn off foreign key checks to create tables 
+    sql = 'SET FOREIGN_KEY_CHECKS = 0';
+
     // Seeding table
     sql = [ 'CREATE TABLE RESTAURANT ( Rstrnt_id varchar(255) AUTO_INCREMENT NOT NULL, Name varchar(255) NOT NULL, Location varchar(255) NOT NULL, Avg_rate int, Owner_id varchar(255) NOT NULL, PRIMARY KEY (Rstrnt_id), FOREIGN KEY (Owner_id) REFERENCES OWNER(User_id) )', 
             'CREATE TABLE RESERVATION (Res_id varchar(255) AUTO_INCREMENT NOT NULL, Rstrnt_id varchar(255) NOT NULL, Guest_count int NOT NULL, Date Date NOT NULL, Cust_id varchar(255) NOT NULL, PRIMARY KEY (Res_id), FOREIGN KEY (Cust_id) REFERENCES CUSTOMER(User_id), FOREIGN KEY (Rstrnt_id) REFERENCES Restaurant(Rstrnt_id) )'
@@ -31,6 +34,9 @@ function seedDB() {
     })
 
     // sql = insert stuff into those tables here
+
+    // Turn foreign key checks back on
+    sql = 'SET FOREIGN_KEY_CHECKS = 1';
 }
 
 module.exports = seedDB;
