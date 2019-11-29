@@ -1,5 +1,5 @@
 
-
-<h1>hello <%= restaurants[0].Name %></h1>
-
+<% restaurants.forEach((restaurant) => { %>
+<h1>hello <%= restaurant.Name %></h1>
+<% }); %>
 

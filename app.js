@@ -17,14 +17,14 @@ app.set("view engine", "ejs");
 // Requiring Routes
 var indexRoutes = require("./routes/index"),
     restaurantRoutes = require("./routes/restaurant"),
-    menuRoutes = require("./routes/menu"),
+    reservationRoutes = require("./routes/reservation"),
     ordersRoutes = require("./routes/orders"),
     userRoutes = require("./routes/user"),
     checkoutRoutes = require("./routes/checkout");
 
 // app.use("/", indexRoutes);
 app.use("/restaurants", restaurantRoutes);
-// app.use("/menu", menuRoutes);
+// app.use("/reservation", reservationRoutes);
 // app.use("/orders", ordersRoutes);
 // app.use("/user", userRoutes);
 // app.use("/checkout", checkoutRoutes);
