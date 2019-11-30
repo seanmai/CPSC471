@@ -1,5 +1,4 @@
 var express        = require("express"),
-    // socket         = require("socket.io"),
     bodyParser     = require("body-parser"),
     app            = express(),
     db             = require('./db'),
@@ -11,7 +10,7 @@ app.set("view engine", "ejs");
 // Uncomment this line to create the database only.
 // createDB();
 // Uncomment this line to seed the database.
-seedDB();
+// seedDB();
 
 
 // Requiring Routes
