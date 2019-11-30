@@ -21,16 +21,16 @@ var indexRoutes = require("./routes/index"),
     userRoutes = require("./routes/user"),
     checkoutRoutes = require("./routes/checkout");
 
-// app.use("/", indexRoutes);
+app.use("/", indexRoutes);
 app.use("/restaurants", restaurantRoutes);
-// app.use("/reservation", reservationRoutes);
-// app.use("/orders", ordersRoutes);
+app.use("/reservation", reservationRoutes);
+app.use("/orders", ordersRoutes);
 // app.use("/user", userRoutes);
 // app.use("/checkout", checkoutRoutes);
-// // Redirects all other routes that are not specified
-// app.all("*", function(req, res){
-//     res.redirect("http://localhost:3000");
-// });
+// Redirects all other routes that are not specified
+app.all("*", function(req, res){
+    res.redirect("http://localhost:3000");
+});
 
 
 var port = 3000;

@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
         if(err) throw err;
         restaurants = result;
         res.render("restaurant/index", {restaurants : restaurants});
-    })
+    });
 });
 
 router.get("/:id", (req, res) => {
@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
         if(err) throw err;
         let restaurant = result[0];
         res.render("restaurant/show", {restaurant : restaurant});
-    })
+    });
 });
 
 router.get("/:id/menu", (req, res) => {
