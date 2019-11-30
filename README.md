@@ -17,5 +17,5 @@ var db = mysql.createConnection({
     database : 'restaurant471'
 });
 ```
-3. Create a database by commenting out the above line of code and then uncommenting the `createDB()` function in app.js. Run the server once with the `node app.js` command in the command line when in this project directory.
-4. Stop the server. Comment back out `createDB()` and uncomment `seedDB()` to seed the database with initial data. You can comment this line back out and begin coding. 
+3. Create a database by commenting out the above line `database : 'restaurant471'` and then uncommenting the `createDB()` function in app.js. Run the server once with the `node app.js` command in the command line when in this project directory.
+4. Stop the server. Comment back out `createDB()` and uncomment `database : 'restaurant471'` from the database connection and `seedDB()` app.js to seed the database with initial data. You can comment this line back out and begin coding. 
