@@ -10,8 +10,8 @@ app.set("view engine", "ejs");
 
 // Uncomment this line to create the database only.
 // createDB();
-// Uncomment this line to create AND seed the database.
-// seedDB();
+// Uncomment this line to seed the database.
+seedDB();
 
 
 // Requiring Routes
