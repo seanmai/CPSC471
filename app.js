@@ -8,10 +8,9 @@ var express        = require("express"),
 app.set("view engine", "ejs");
 
 // Uncomment this line to create the database only.
-// createDB();
+//createDB();
 // Uncomment this line to seed the database.
-// seedDB();
-
+seedDB();
 
 // Requiring Routes
 var indexRoutes = require("./routes/index"),
