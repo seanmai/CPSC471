@@ -13,7 +13,9 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    let sql = 'INSERT INTO RESERVATION VALUES ((SELECT Rstrnt_id FROM RESTAURANT WHERE Rstrnt_id = <id>), ‘<guest_count>’, ‘<date>’, (SELECT User_id FROM CUSTOMER WHERE User_id = <id>))';
+    let sql = 'INSERT INTO RESERVATION VALUES (( \
+               SELECT Rstrnt_id FROM RESTAURANT WHERE Rstrnt_id = <id>), ‘<guest_count>’, ‘<date>’, ( \
+               SELECT User_id FROM CUSTOMER WHERE User_id = <id>))';
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
