@@ -1,7 +1,15 @@
 <%- include('../partials/header') %>
 
-<% restaurants.forEach((restaurant) => { %>
-<h1><%= restaurant.Name %></h1>
-<% }); %>
+<div class='container'>
+    <h1>Select a Restaurant</h1>
+    <% restaurants.forEach((restaurant) => { %>
+        <a href="/restaurants/<%= restaurant.Rstrnt_id %>" style='text-decoration: none; color: black;'>
+            <div style='width: 100%; border: 1px solid #aaa; padding: 30px; margin-top: 30px;'>
+                <h3><%= restaurant.Name %></h3>
+                <div><%= restaurant.Location %></div>
+            </div>
+        </a>
+    <% }); %>
+</div>
 
 <%- include('../partials/footer') %>    
