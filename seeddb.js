@@ -147,12 +147,13 @@ function seedDB() {
         runSQL(statement);
     });
 
+    // Populating tables
     sql = [ 'INSERT INTO RESTAURANT (Name, Location, Avg_rate, Owner_id) VALUES ("Seans Pub", "1234 4th St Calgary, AB", 12, 1)',
             'INSERT INTO RESTAURANT (Name, Location, Avg_rate, Owner_id) VALUES ("Boba", "123 3rd St Calgary, AB", 15, 2)',
           ];
         
     sql.forEach((statement) => {
-    runSQL(statement);
+        runSQL(statement);
     });
 
     // Turn foreign key checks back on
