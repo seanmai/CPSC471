@@ -23,13 +23,14 @@ router.get("/:id", (req, res) => {
 
 router.get("/:id/menu", (req, res) => {
     let menu = {};
-    let restaurant = {};
 
-    let sql = 'SELECT * FROM restaurant';
+    let sql = `SELECT F.* \
+               FROM FOOD as F, RESTAURANT as R \
+               WHERE F.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if(err) throw err;
-        restaurant = result[0];
-        res.render("restaurant/index", {restaurant : restaurant});
+        menu = result;
+        res.render("restaurant/menu", {menu : menu});
     });
 });
 
