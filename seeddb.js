@@ -73,8 +73,7 @@ function seedDB() {
                 Phone varchar(20) NOT NULL, \
                 Rstrnt_id int NOT NULL, \
                 PRIMARY KEY (Employee_id), \
-                FOREIGN KEY (Employer_id) REFERENCES OWNER(Owner_id), \
-                FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT(Rstrnt_id) )',
+                FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT(Rstrnt_id) )', // Employer_id is removed 
             'CREATE TABLE FOOD ( \
                 Food_id int AUTO_INCREMENT NOT NULL, \
                 Name varchar(255) NOT NULL, \
