@@ -39,7 +39,7 @@ function seedDB() {
                 FOREIGN KEY (Rstrnt_id) REFERENCES Restaurant(Rstrnt_id) )',
             'CREATE TABLE TABLES ( \
                 Rstrnt_id int NOT NULL, \
-                Table_no varchar(255) NOT NULL, \
+                Table_no int NOT NULL, \
                 Capacity int NOT NULL, \
                 Res_id int NOT NULL, \
                 PRIMARY KEY (Rstrnt_id,Table_no), \
