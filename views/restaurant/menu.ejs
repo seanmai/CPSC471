@@ -1,8 +1,9 @@
 <%- include('../partials/header') %>
 
-<h1> <%= restaurant.Name %> </h1>
+<div class='container'>
+    <% menu.forEach((item) => { %>
+        <h3><%= item.Name %></h3>
+    <% }); %>
+</div>
 
-<h2>Menu</h2>
-<h2>Reserve a table</h2>
-
-<%- include('../partials/footer') %>    
+<%- include('../partials/footer') %>   

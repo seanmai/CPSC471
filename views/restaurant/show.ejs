@@ -1,8 +1,12 @@
 <%- include('../partials/header') %>
 
-<h1> <%= restaurant.Name %> </h1>
+<div class='container'>
+    <h1> <%= restaurant.Name %> </h1>
 
-<h2>Menu</h2>
-<h2>Reserve a table</h2>
+    <div style='width: 100%;'>
+        <div style='display: inline-block; width: 49%; font-size: 20px;'><a href="/restaurants/<%= restaurant.Rstrnt_id %>/menu">Menu</a></div>
+        <div style='display: inline-block; width: 49%; font-size: 20px;'><a href="/restaurants/<%= restaurant.Rstrnt_id %>/reservations">Reserve a table</a></div>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>    

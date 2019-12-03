@@ -23,28 +23,27 @@ router.get("/:id", (req, res) => {
 
 router.get("/:id/menu", (req, res) => {
     let menu = {};
-    let restaurant = {};
 
-    let sql = 'SELECT * FROM restaurant';
+    let sql = `SELECT F.* \
+               FROM FOOD as F, RESTAURANT as R \
+               WHERE F.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if(err) throw err;
-        restaurant = result[0];
-        res.render("restaurant/index", {restaurant : restaurant});
+        menu = result;
+        res.render("restaurant/menu", {menu : menu});
     });
 });
 
 router.get("/:id/reservations", (req, res) => {
     let reservations = {};
 
-    router.get("/", (req, res) => {
-        // Query all reservations from the current date and onwards
-        let sql = `SELECT V.* FROM RESERVATION as V, RESTAURANT as R \
-                   WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= CURDATE()`;
-        db.query(sql, (err, result) => {
-            if(err) throw err;
-            reservations = result;
-            res.render("reservation/index", {reservations : reservations});
-        });
+    // Query all reservations from the current date and onwards
+    let sql = `SELECT V.* FROM RESERVATION as V, RESTAURANT as R \
+                WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= NOW()`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        reservations = result;
+        res.render("restaurant/reservation", {reservations : reservations});
     });
 });
 
@@ -55,7 +54,7 @@ router.post("/:id/reservations", (req, res) => {
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
-        res.render("reservation/index", {reservations : reservations});
+        res.render("restaurant/reservation", {reservations : reservations});
     });
 });
 
@@ -64,7 +63,7 @@ router.delete("/:id/reservations/rsrvID", (req, res) => {
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
-        res.render("reservation/index", {reservations : reservations});
+        res.render("restaurant/reservation", {reservations : reservations});
     });
 });
 
