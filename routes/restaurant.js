@@ -37,15 +37,13 @@ router.get("/:id/menu", (req, res) => {
 router.get("/:id/reservations", (req, res) => {
     let reservations = {};
 
-    router.get("/", (req, res) => {
-        // Query all reservations from the current date and onwards
-        let sql = `SELECT V.* FROM RESERVATION as V, RESTAURANT as R \
-                   WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= CURDATE()`;
-        db.query(sql, (err, result) => {
-            if(err) throw err;
-            reservations = result;
-            res.render("reservation/index", {reservations : reservations});
-        });
+    // Query all reservations from the current date and onwards
+    let sql = `SELECT V.* FROM RESERVATION as V, RESTAURANT as R \
+                WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= NOW()`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        reservations = result;
+        res.render("restaurant/reservation", {reservations : reservations});
     });
 });
 
@@ -56,7 +54,7 @@ router.post("/:id/reservations", (req, res) => {
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
-        res.render("reservation/index", {reservations : reservations});
+        res.render("restaurant/reservation", {reservations : reservations});
     });
 });
 
@@ -65,7 +63,7 @@ router.delete("/:id/reservations/rsrvID", (req, res) => {
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
-        res.render("reservation/index", {reservations : reservations});
+        res.render("restaurant/reservation", {reservations : reservations});
     });
 });
 

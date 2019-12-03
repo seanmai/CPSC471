@@ -32,7 +32,7 @@ function seedDB() {
                 Res_id int AUTO_INCREMENT NOT NULL, \
                 Rstrnt_id int NOT NULL, \
                 Guest_count int NOT NULL, \
-                Date Date NOT NULL, \
+                Date Datetime NOT NULL, \
                 Cust_id int NOT NULL, \
                 PRIMARY KEY (Res_id), \
                 FOREIGN KEY (Cust_id) REFERENCES CUSTOMER(Customer_id), \
@@ -149,6 +149,7 @@ function seedDB() {
     // Populating tables
     sql = [ 'INSERT INTO RESTAURANT (Name, Location, Avg_rate, Owner_id) VALUES ("Seans Pub", "1234 4th St Calgary, AB", 12, 1)',
             'INSERT INTO RESTAURANT (Name, Location, Avg_rate, Owner_id) VALUES ("Boba", "123 3rd St Calgary, AB", 15, 2)',
+            'INSERT INTO RESERVATION (Rstrnt_id, Guest_count, Date, Cust_id) VALUES (1, 4, "2019-12-05 03:14:07.999999", 1)',
             'INSERT INTO TABLES (Rstrnt_id, Table_no, Capacity, Res_id) VALUES (1, 1, 4, 1)',
             'INSERT INTO CUSTOMER (Name, Phone) VALUES ("jh", "403-1111-1111")',
             'INSERT INTO ADMIN (Name, Phone) VALUES ("James", "403-2222-2222")',
