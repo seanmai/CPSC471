@@ -15,12 +15,12 @@ router.get("/add-to-cart/:id", (req, res) => {
     let food = {};
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     let sql = `SELECT * \
-               FROM FOOD \
-               WHERE Food_id = ${req.params.id}`;
+               FROM ITEM \
+               WHERE Item_id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if(err) throw err;
         food = result[0];
-        cart.add(food, food.Food_id);
+        cart.add(food, food.Item_id);
         req.session.cart = cart;
         console.log(cart);
         console.log(food);
