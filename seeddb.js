@@ -74,29 +74,21 @@ function seedDB() {
                 Rstrnt_id int NOT NULL, \
                 PRIMARY KEY (Employee_id), \
                 FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT(Rstrnt_id) )', // Employer_id is removed 
-            'CREATE TABLE FOOD ( \
-                Food_id int AUTO_INCREMENT NOT NULL, \
+            'CREATE TABLE ITEM ( \
+                Item_id int AUTO_INCREMENT NOT NULL, \
                 Name varchar(255) NOT NULL, \
                 Description varchar(255), \
                 Price int NOT NULL, \
                 Quantity int NOT NULL, \
-                Rstrnt_id int NOT NULL, \
-                PRIMARY KEY (Food_id), \
-                FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT (Rstrnt_id) )',
-            'CREATE TABLE FOOD_INGREDIENTS ( \
-                Food_id int NOT NULL, \
-                Food_ingredients varchar(255) NOT NULL, \
-                PRIMARY KEY (Food_id,Food_ingredients), \
-                FOREIGN KEY (Food_id) REFERENCES Food (Food_id) )',
-            'CREATE TABLE DRINK ( \
-                Drink_id int AUTO_INCREMENT NOT NULL, \
-                Name varchar(255) NOT NULL, \
-                Description varchar(255), \
-                Quantity int NOT NULL, \
                 Type varchar(255), \
                 Rstrnt_id int NOT NULL, \
-                PRIMARY KEY (Drink_id), \
+                PRIMARY KEY (Item_id), \
                 FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT (Rstrnt_id) )',
+            'CREATE TABLE ITEM_INGREDIENTS ( \
+                Item_id int NOT NULL, \
+                Item_ingredients varchar(255) NOT NULL, \
+                PRIMARY KEY (Item_id,Item_ingredients), \
+                FOREIGN KEY (Item_id) REFERENCES ITEM(Item_id) )',
             'CREATE TABLE ORDERS ( \
                 Order_id int AUTO_INCREMENT NOT NULL, \
                 Pay_method varchar(20) NOT NULL, \
@@ -109,18 +101,12 @@ function seedDB() {
                 PRIMARY KEY (Order_id), \
                 FOREIGN KEY (Customer_id) REFERENCES CUSTOMER(Customer_id), \
                 FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT(Rstrnt_id) )',
-            'CREATE TABLE CONSIST_OF_FOOD ( \
+            'CREATE TABLE CONSIST_OF ( \
                 Order_id int NOT NULL, \
-                Food_id int NOT NULL, \
-                PRIMARY KEY (Order_id,Food_id), \
+                Item_id int NOT NULL, \
+                PRIMARY KEY (Order_id,Item_id), \
                 FOREIGN KEY (Order_id) REFERENCES ORDERS(Order_id), \
-                FOREIGN KEY (Food_id) REFERENCES FOOD(Food_id) )',
-            'CREATE TABLE CONSIST_OF_DRINK ( \
-                Order_id int NOT NULL, \
-                Drink_id int NOT NULL, \
-                PRIMARY KEY (Order_id,Drink_id), \
-                FOREIGN KEY (Order_id) REFERENCES ORDERS(Order_id), \
-                FOREIGN KEY (Drink_id) REFERENCES DRINK(Drink_id) )',
+                FOREIGN KEY (Item_id) REFERENCES ITEM(Item_id) )',
             'CREATE TABLE MENU ( \
                 Menu_id int AUTO_INCREMENT NOT NULL, \
                 Name varchar(255) NOT NULL, \
@@ -128,18 +114,12 @@ function seedDB() {
                 Rstrnt_id int NOT NULL, \
                 PRIMARY KEY (Menu_id), \
                 FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT(Rstrnt_id) )',
-            'CREATE TABLE COMPRISES_OF_FOOD ( \
+            'CREATE TABLE COMPRISES_OF ( \
                 Menu_id int NOT NULL, \
-                Food_id int NOT NULL, \
-                PRIMARY KEY (Menu_id,Food_id), \
+                Item_id int NOT NULL, \
+                PRIMARY KEY (Menu_id,Item_id), \
                 FOREIGN KEY (Menu_id) REFERENCES MENU(Menu_id), \
-                FOREIGN KEY (Food_id) REFERENCES FOOD(Food_id) )',
-            'CREATE TABLE COMPRISES_OF_DRINK ( \
-                Menu_id int NOT NULL, \
-                Drink_id int NOT NULL, \
-                PRIMARY KEY (Menu_id,Drink_id), \
-                FOREIGN KEY (Menu_id) REFERENCES MENU(Menu_id), \
-                FOREIGN KEY (Drink_id) REFERENCES DRINK(Drink_id) )',
+                FOREIGN KEY (Item_id) REFERENCES ITEM(Item_id) )',
           ];
     sql.forEach((statement) => {
         runSQL(statement);
@@ -156,17 +136,17 @@ function seedDB() {
             'INSERT INTO HELPS (Admin_id, Customer_id) VALUES (1,1)',
             'INSERT INTO OWNER (Name, Phone) VALUES ("Smith","403-3333-3333")',
             'INSERT INTO EMPLOYEE (Name, Phone, Rstrnt_id) VALUES ("Lauren", "403-4444-4444",1)',
-            'INSERT INTO FOOD (Name, Description, Price, Quantity, Rstrnt_id) VALUES ("Cheese Hamburger","Hamburger with cheese",10,2,1)',
-            'INSERT INTO FOOD (Name, Description, Price, Quantity, Rstrnt_id) VALUES ("Hamburger","Plain Hamburger",8,2,1)',
-            'INSERT INTO FOOD (Name, Description, Price, Quantity, Rstrnt_id) VALUES ("Hotdog","Jumbo sausage hotdog",5,2,1)',
-            'INSERT INTO FOOD_INGREDIENTS (Food_id, Food_ingredients) VALUES (1, "Cheese")',
-            'INSERT INTO DRINK (Name, Description, Quantity, Type, Rstrnt_id) VALUES ("Coke","cool",4,"soft drink",1)',
+            'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Cheese Hamburger","Hamburger with cheese",10,2,"Food",1)',
+            'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Hamburger","Plain Hamburger",8,2,"Food",1)',
+            'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Hotdog","Jumbo sausage hotdog",5,2,"Food",1)',
+            'INSERT INTO ITEM_INGREDIENTS (ITEM_id, Item_ingredients) VALUES (1, "Cheese")',
+            'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Coke","cool",2,4,"Drink",1)',
             'INSERT INTO ORDERS (Pay_method, Date, Address, Pickup_time, Order_type, Customer_id, Rstrnt_id) VALUES ("visa","2019-12-01","Avenue 17th St","11:27:30","delivery",1,1)',
-            'INSERT INTO CONSIST_OF_FOOD (Order_id, Food_id) VALUES (1, 1)',
-            'INSERT INTO CONSIST_OF_DRINK (Order_id, Drink_id) VALUES (1, 1)',
+            'INSERT INTO CONSIST_OF (Order_id, Item_id) VALUES (1, 1)',
+            'INSERT INTO CONSIST_OF (Order_id, Item_id) VALUES (1, 4)',
             'INSERT INTO MENU (Name,Meals_type,Rstrnt_id) VALUES ("Lunch set", "Lunch", 1)',
-            'INSERT INTO COMPRISES_OF_FOOD(Menu_id, Food_id) VALUES (1,1)',
-            'INSERT INTO COMPRISES_OF_DRINK(Menu_id, Drink_id) VALUES (1,1)',
+            'INSERT INTO COMPRISES_OF(Menu_id, Item_id) VALUES (1,1)',
+            'INSERT INTO COMPRISES_OF(Menu_id, Item_id) VALUES (4,1)',
           ];
         
     sql.forEach((statement) => {

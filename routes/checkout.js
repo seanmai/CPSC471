@@ -3,6 +3,14 @@ var router = express.Router();
 var db = require('../db.js');
 var Cart = require("../models/cart");
 
+router.get("/", function(req, res){
+    if(!req.session.cart){
+        return res.render("checkout/index", {items: null});
+    }
+    var cart = new Cart(req.session.cart);
+    res.render("checkout/index", {items: cart.generateArray(), totalPrice: cart.totalPrice});
+});
+
 router.get("/add-to-cart/:id", (req, res) => {
     let food = {};
     var cart = new Cart(req.session.cart ? req.session.cart : {});
