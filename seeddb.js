@@ -148,6 +148,7 @@ function seedDB() {
     // Populating tables
     sql = [ 'INSERT INTO RESTAURANT (Name, Location, Avg_rate, Owner_id) VALUES ("Seans Pub", "1234 4th St Calgary, AB", 12, 1)',
             'INSERT INTO RESTAURANT (Name, Location, Avg_rate, Owner_id) VALUES ("Boba", "123 3rd St Calgary, AB", 15, 2)',
+            'INSERT INTO RESERVATION (Rstrnt_id, Guest_count, Date, Cust_id) VALUES (1, 4, "2019-12-01 03:14:07.999999", 1)',
             'INSERT INTO RESERVATION (Rstrnt_id, Guest_count, Date, Cust_id) VALUES (1, 4, "2019-12-05 03:14:07.999999", 1)',
             'INSERT INTO TABLES (Rstrnt_id, Table_no, Capacity, Res_id) VALUES (1, 1, 4, 1)',
             'INSERT INTO CUSTOMER (Name, Phone) VALUES ("jh", "403-1111-1111")',
@@ -156,6 +157,8 @@ function seedDB() {
             'INSERT INTO OWNER (Name, Phone) VALUES ("Smith","403-3333-3333")',
             'INSERT INTO EMPLOYEE (Name, Phone, Rstrnt_id) VALUES ("Lauren", "403-4444-4444",1)',
             'INSERT INTO FOOD (Name, Description, Price, Quantity, Rstrnt_id) VALUES ("Cheese Hamburger","Hamburger with cheese",10,2,1)',
+            'INSERT INTO FOOD (Name, Description, Price, Quantity, Rstrnt_id) VALUES ("Hamburger","Plain Hamburger",8,2,1)',
+            'INSERT INTO FOOD (Name, Description, Price, Quantity, Rstrnt_id) VALUES ("Hotdog","Jumbo sausage hotdog",5,2,1)',
             'INSERT INTO FOOD_INGREDIENTS (Food_id, Food_ingredients) VALUES (1, "Cheese")',
             'INSERT INTO DRINK (Name, Description, Quantity, Type, Rstrnt_id) VALUES ("Coke","cool",4,"soft drink",1)',
             'INSERT INTO ORDERS (Pay_method, Date, Address, Pickup_time, Order_type, Customer_id, Rstrnt_id) VALUES ("visa","2019-12-01","Avenue 17th St","11:27:30","delivery",1,1)',
