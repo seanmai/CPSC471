@@ -24,9 +24,9 @@ router.get("/:id", (req, res) => {
 router.get("/:id/menu", (req, res) => {
     let menu = {};
 
-    let sql = `SELECT F.* \
-               FROM FOOD as F, RESTAURANT as R \
-               WHERE F.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id = ${req.params.id}`;
+    let sql = `SELECT I.* \
+               FROM ITEM as I, RESTAURANT as R \
+               WHERE I.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if(err) throw err;
         menu = result;
@@ -67,6 +67,9 @@ router.delete("/:id/reservations/rsrvID", (req, res) => {
     });
 });
 
+router.get("/:id/orders", (req, res) => {
+
+});
 
 
 module.exports = router;

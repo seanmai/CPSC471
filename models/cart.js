@@ -9,10 +9,10 @@ module.exports = function Cart(initCart){
         if(!storedItem){
             storedItem = this.items[id] = {item: item, qty: 0, price: 0}
         }
-        if(this.rstrntId != storedItem.item.Rstrnt_id) {
+        if(this.rstrntId != storedItem.item.Rstrnt_id && this.rstrntId != 0) {
             this.clear();
-            this.rstrntId = storedItem.item.Rstrnt_id;
         }
+        this.rstrntId = storedItem.item.Rstrnt_id;
         storedItem.qty++;
         storedItem.price = storedItem.item.Price * storedItem.qty;
         this.totalQty++;

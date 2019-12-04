@@ -3,8 +3,8 @@
 <div class='container'>
     <% menu.forEach((item) => { %>
         <h3><%= item.Name %></h3>
-        <a href="/checkout/add-to-cart/<%= item.Food_id %>">Add to cart</a>
+        <a href="/checkout/add-to-cart/<%= item.Item_id %>">Add to cart</a>
     <% }); %>
 </div>
 
-<%- include('../partials/footer') %>   
+<%- include('../partials/footer') %>
