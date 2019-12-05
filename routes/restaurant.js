@@ -13,12 +13,56 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/admin", (req, res) => {
+    let restaurants = {};
+    let sql = 'SELECT * FROM restaurant';
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        restaurants = result;
+        res.render("restaurant/admin/index", {restaurants : restaurants});
+    });
+});
+
+router.get("/:id/admin", (req, res) => {
+    let sql = `SELECT * FROM restaurant WHERE Rstrnt_id=${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        let restaurant = result[0];
+        res.render("restaurant/admin/show", {restaurant : restaurant});
+    });
+});
+
+router.get("/:id/edit", (req, res) => {
+    let sql = `SELECT * FROM restaurant WHERE Rstrnt_id=${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        let restaurant = result[0];
+        res.render("restaurant/admin/edit", {restaurant : restaurant});
+    });
+});
+
 router.get("/:id", (req, res) => {
     let sql = `SELECT * FROM restaurant WHERE Rstrnt_id=${req.params.id}`;
     db.query(sql, (err, result) => {
         if(err) throw err;
         let restaurant = result[0];
         res.render("restaurant/show", {restaurant : restaurant});
+    });
+});
+
+router.put("/:id", (req, res) => {
+    let sql = `UPDATE RESTAURANT SET Name=?, Location=?, Avg_rate=? WHERE Rstrnt_id=${req.params.id}`;
+    db.query(sql, [req.body.name, req.body.location, req.body.rate], (err, result) => {
+        if(err) throw err;
+        res.redirect("/restaurants/admin");
+    });
+});
+
+router.delete("/:id", function(req, res) {
+    let sql = `DELETE FROM RESTAURANT WHERE Rstrnt_id = ${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.redirect("/restaurants/admin");
     });
 });
 

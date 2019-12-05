@@ -1,0 +1,19 @@
+<%- include('../../partials/header') %>
+
+<div class='container'>
+    <h1>Select a Restaurant</h1>
+    <% restaurants.forEach((restaurant) => { %>
+        <div class="restaurant">
+            <h3><%= restaurant.Name %></h3>
+            <div><%= restaurant.Location %></div>
+            <div style="padding-top: 10px;">
+                <a class="btn btn-primary" href="/restaurants/<%= restaurant.Rstrnt_id %>/edit" role="button">Edit</a>
+                <form style="display: inline;" action="/restaurants/<%= restaurant.Rstrnt_id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<%- include('../../partials/footer') %>    
