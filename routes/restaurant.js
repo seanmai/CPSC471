@@ -68,8 +68,9 @@ router.delete("/:id/reservations/rsrvID", (req, res) => {
 });
 
 router.get("/:id/orders", (req, res) => {
-    let sql = `SELECT O.*,C.Quantity,I.Name as Item_name,U.username as Customer_name FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U \
-               WHERE O.Rstrnt_id=${req.params.id} AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id \
+    let sql = `SELECT O.*,C.Quantity,I.Name as Item_name,U.username as Customer_name \
+               FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U \
+               WHERE O.Rstrnt_id=1 AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id \
                ORDER BY Order_id`;
     db.query(sql, (err, result) => {
         if(err) throw err;
@@ -83,3 +84,4 @@ router.get("/:id/orders", (req, res) => {
 module.exports = router;
 
 //ELECT O.*,C.Quantity,I.Name,U.username FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U WHERE O.Rstrnt_id=1 AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id ORDER BY Order_id;
+// SELECT O.*,C.Quantity,I.Name as Item_name,U.username as Customer_name FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U WHERE O.Rstrnt_id=${req.params.id} AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id ORDER BY Order_id;

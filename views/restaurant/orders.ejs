@@ -9,10 +9,46 @@
                 <% for(var i = orders.length-1; i >= 0; i--){ %>
                     <% if(id != orders[i].Order_id) { %>
                         <% id = orders[i].Order_id; %>
-                        New Order: <%= orders[i].Order_id %>, <%= orders[i].Customer_name %>
-                        <div><%= orders[i].Item_name %></div>
+                        <div class="order-history-item-left" style="padding-top: 50px;">
+                            <div class="order-history-name">
+                                <%= orders[i].Customer_name %>
+                            </div>
+                            <div class="order-history-payment">
+                                <%= orders[i].Pay_method %>
+                            </div>
+                            <div style="padding-top: 15px;">
+                                Ordered items:
+                            </div>
+                        </div>
+
+                        <div class="order-history-item-right" style="padding-top: 50px;">
+                            <div class="order-history-date">
+                                <%= orders[i].Date %>
+                            </div>
+                            <div class="order-history-type">
+                                <%= orders[i].Order_type %>
+                            </div>
+                            <div class="order-history-type">
+                                <%= orders[i].Address %>
+                            </div>
+                        </div>
+                        <div class="checkout-row">
+                            <div class="checkout-item checkout-item-qty">
+                                <span style="padding: 0 8px;"><strong><%= orders[i].Quantity %></strong></span>
+                            </div>
+                            <div class="checkout-item checkout-item-name">
+                                <strong><%= orders[i].Item_name %></strong>
+                            </div>
+                        </div>
                     <% } else { %>
-                        <div><%= orders[i].Item_ame %></div>
+                        <div class="checkout-row">
+                            <div class="checkout-item checkout-item-qty">
+                                <span style="padding: 0 8px;"><strong><%= orders[i].Quantity %></strong></span>
+                            </div>
+                            <div class="checkout-item checkout-item-name">
+                                <strong><%= orders[i].Item_name %></strong>
+                            </div>
+                        </div>
                     <% } %>
                 <% } %>
             </div>
