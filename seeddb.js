@@ -92,7 +92,7 @@ function seedDB() {
             'CREATE TABLE ORDERS ( \
                 Order_id int AUTO_INCREMENT NOT NULL, \
                 Pay_method varchar(20) NOT NULL, \
-                Date date NOT NULL, \
+                Date datetime NOT NULL, \
                 Address varchar(255), \
                 Pickup_time time, \
                 Order_type varchar(255), \
