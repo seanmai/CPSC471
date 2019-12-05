@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <% if(orders){ %>
+        <div class="col-md-12">
+            <h2>Order History</h2>
+            <div class="col-md-9">
+                <% let id = 0 %>
+                <% for(var i = orders.length-1; i >= 0; i--){ %>
+                    <% if(id != orders[i].Order_id) { %>
+                        <% id = orders[i].Order_id; %>
+                        New Order: <%= orders[i].Order_id %>, <%= orders[i].Customer_name %>
+                        <div><%= orders[i].Item_name %></div>
+                    <% } else { %>
+                        <div><%= orders[i].Item_ame %></div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="col-sm-6 col-md-6">
+            <h2>No orders have been placed</h2>
+        </div>
+    <% } %>
+</div>
+
+
+<%- include('../partials/footer') %>
+

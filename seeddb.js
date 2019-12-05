@@ -147,7 +147,7 @@ function seedDB() {
             'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Hotdog","Jumbo sausage hotdog",5,2,"Food",1)',
             'INSERT INTO ITEM_INGREDIENTS (ITEM_id, Item_ingredients) VALUES (1, "Cheese")',
             'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Coke","cool",2,4,"Drink",1)',
-            'INSERT INTO ORDERS (Pay_method, Date, Address, Pickup_time, Order_type, Customer_id, Rstrnt_id) VALUES ("visa","2019-12-01","Avenue 17th St","11:27:30","delivery",1,1)',
+            'INSERT INTO ORDERS (Pay_method, Date, Address, Pickup_time, Order_type, Customer_id, Rstrnt_id) VALUES ("Credit card","2019-12-01","Avenue 17th St","11:27:30","delivery",1,1)',
             'INSERT INTO CONSIST_OF (Order_id, Item_id, Quantity) VALUES (1, 1, 2)',
             'INSERT INTO CONSIST_OF (Order_id, Item_id, Quantity) VALUES (1, 4, 1)',
             'INSERT INTO MENU (Name,Meals_type,Rstrnt_id) VALUES ("Lunch set", "Lunch", 1)',
