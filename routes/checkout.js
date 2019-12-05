@@ -55,7 +55,7 @@ router.post("/", function(req, res){
         Date: new Date(Date.now()).toISOString().slice(0, 19).replace('T', ' '),
         Address: req.body.address,
         Pickup_time: req.body.pickup_time,
-        Order_type: req.body.order_type,
+        Order_type: req.body.deliveryOption,
         Customer_id: req.user.user_id,
         Rstrnt_id: cart.rstrntId, 
     }

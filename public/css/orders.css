@@ -1,0 +1,135 @@
+/* Profile Header */
+.nav-pills .active{
+    width: 105%;
+}
+
+.nav-pills {
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #dddddd;
+    border-top: none;
+    position: fixed;
+    width: 300px;
+}
+
+.nav-pills li a{
+    padding: 10px 30px;
+}
+
+.nav-pills li h2{
+    padding: 0 30px;
+}
+
+/* Account */
+.account-container{
+    display: inline-block;
+    margin-top: 15px;
+    float: left; padding: 0;
+}
+.account-container h2{
+    margin-bottom: 20px;
+}
+
+.account-form-container{
+    width: 50%;
+}
+
+/* Order Histroy */
+.order-history-item-container{
+    padding: 0;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+.order-history-item{
+    display: block;
+    float: left;
+    border-bottom: 1px solid #cccccc;
+    width: 100%;
+    height: 65px;
+    padding: 7px;
+    position: relative;
+}
+
+.order-history-item-left{
+     width: 25%;
+     display: inline-block;
+}
+
+.order-history-name{
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.order-history-address{
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.order-history-payment{
+    display: block;
+    text-transform: capitalize;
+    font-size: 15px;
+    color: #666666;
+}
+
+.order-history-type {
+    font-size: 12px;
+    text-transform: capitalize;
+    color: #888888;
+}
+
+.order-history-button{
+    display: inline-block;
+    float: right;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.order-history-button .btn{
+    font-weight: 500;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.order-history-item-right{
+    display: inline-block;
+    float: right;
+    position: relative;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.order-history-date{
+    font-size: 12px;
+    color: #888888;
+}
+
+.order-history-id a{
+    text-decoration: none;
+}
+
+.modal-order-item-container{
+    display: inline-block;
+    margin: 10px 12px;
+    border-bottom: 1px solid #dddddd;
+    width: 96%;
+    float: left;
+}
+
+.modal-order-total-container{
+    display: block;
+    margin: 10px 12px;;
+    width: 95%;
+    font-size: 15px;
+}
+
+.modal-order-total-container p{
+    margin: 0;
+}

@@ -1,0 +1,12 @@
+.restaurant:hover {
+    transition: 0.35s ease;
+    opacity: 0.65;
+    background: #ccc;
+}
+
+.restaurant {
+    width: 100%; 
+    border: 1px solid #aaa; 
+    padding: 30px; 
+    margin-top: 30px;
+}
