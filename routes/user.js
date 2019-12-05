@@ -28,4 +28,9 @@ router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect : '/user/signup', // redirect back to the signup page if there is an error
 }));
 
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 module.exports = router;
