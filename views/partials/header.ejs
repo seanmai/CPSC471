@@ -33,7 +33,10 @@
                         </li>
                     <% } else { %>
                         <li class="nav-item">
-                            <a class="nav-link" href="/user/<%= currentUser.user_id %>/orders">View Orders</a>
+                            <a class="nav-link" href="/user/<%= currentUser.user_id %>/orders">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/<%= currentUser.user_id %>/reservations">Reservations</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/user/logout">Sign Out</a>

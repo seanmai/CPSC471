@@ -4,6 +4,7 @@
     <h1> <%= restaurant.Name %> </h1>
 
     <div style='width: 100%;'>
+        <div style="margin-bottom: 25px"><a class="btn btn-primary" href="/restaurants/<%= restaurant.Rstrnt_id %>/employee" role="button">Employee View</a></div>
         <div style='display: inline-block; width: 49%; font-size: 20px;'><a href="/restaurants/<%= restaurant.Rstrnt_id %>/menu">Menu</a></div>
         <div style='display: inline-block; width: 49%; font-size: 20px;'><a href="/restaurants/<%= restaurant.Rstrnt_id %>/reservations">Reserve a table</a></div>
     </div>
