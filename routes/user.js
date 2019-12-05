@@ -33,4 +33,14 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+router.get('/:id/orders', function(req, res) {
+    let sql = `SELECT O.*,R.Name FROM ORDERS as O, Restaurant as R WHERE Customer_id=${req.params.id} AND O.Rstrnt_id=R.Rstrnt_id`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        let orders = result;
+        res.render("user/orders", {orders : orders});
+    });
+});
+
 module.exports = router;
+
