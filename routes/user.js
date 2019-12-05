@@ -31,7 +31,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 router.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/restaurants');
 });
 
 router.get('/:id/orders', function(req, res) {

@@ -2,6 +2,7 @@
 
 <div class='container'>
     <h1>Select a Restaurant</h1>
+    <div style="margin-bottom: 25px;"><a class="btn btn-primary" href="/restaurants/admin" role="button">Admin View</a></div>
     <% restaurants.forEach((restaurant) => { %>
         <a href="/restaurants/<%= restaurant.Rstrnt_id %>" style='text-decoration: none; color: black;'>
             <div class="restaurant restaurant-hover">
