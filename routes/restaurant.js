@@ -40,7 +40,7 @@ router.get("/:id/reservations", middleware.isLoggedIn, (req, res) => {
 
     // Query all reservations from the current date and onwards
     let sql = `SELECT V.* FROM RESERVATION as V, RESTAURANT as R \
-                WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= NOW()`;
+               WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= NOW()`;
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
@@ -64,7 +64,7 @@ router.post("/:id/reservations", (req, res) => {
     });
 });
 
-router.delete("/:id/reservations/rsrvID", (req, res) => {
+router.delete("/:id/reservations/:rsrvID", (req, res) => {
     let sql = `DELETE FROM RESERVATION WHERE Res_id = ${req.params.rsrvID}`;
     db.query(sql, (err, result) => {
         if(err) throw err;
@@ -73,16 +73,38 @@ router.delete("/:id/reservations/rsrvID", (req, res) => {
     });
 });
 
-router.get("/:id/orders", (req, res) => {
+router.get("/:id/employee", (req, res) => {
+    let sql = `SELECT * FROM restaurant WHERE Rstrnt_id=${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        let restaurant = result[0];
+        res.render("restaurant/employee/show", {restaurant : restaurant});
+    });
+});
+
+router.get("/:id/employee/orders", (req, res) => {
     let sql = `SELECT O.*,C.Quantity,I.Name as Item_name,U.username as Customer_name \
                FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U \
-               WHERE O.Rstrnt_id=1 AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id \
+               WHERE O.Rstrnt_id=${req.params.id} AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id \
                ORDER BY Order_id`;
     db.query(sql, (err, result) => {
         if(err) throw err;
         orders = result;
-        console.log(result);
-        res.render("restaurant/orders", {orders : orders});
+        // console.log(result);
+        res.render("restaurant/employee/orders", {orders : orders});
+    });
+});
+
+router.get("/:id/employee/reservations", (req, res) => {
+    let sql = `SELECT R.*,U.username as Customer_name \
+               FROM RESERVATION as R, USER as U \
+               WHERE R.Rstrnt_id=${req.params.id} AND U.user_id=R.Cust_id \
+               ORDER BY Date DESC`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        reservations = result;
+        // console.log(result);
+        res.render("restaurant/employee/reservations", {reservations : reservations});
     });
 });
 
@@ -91,3 +113,5 @@ module.exports = router;
 
 //ELECT O.*,C.Quantity,I.Name,U.username FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U WHERE O.Rstrnt_id=1 AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id ORDER BY Order_id;
 // SELECT O.*,C.Quantity,I.Name as Item_name,U.username as Customer_name FROM ORDERS as O, CONSIST_OF as C, ITEM as I, USER as U WHERE O.Rstrnt_id=${req.params.id} AND C.Order_id=O.Order_id AND C.Item_id=I.Item_id AND U.user_id=O.Customer_id ORDER BY Order_id;
+
+// SELECT R.*,U.username as Customer_name FROM RESERVATION as R, USER as U WHERE R.Rstrnt_id=1 AND U.user_id=R.Cust_id ORDER BY Date DESC;

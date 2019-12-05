@@ -43,5 +43,14 @@ router.get('/:id/orders', function(req, res) {
     });
 });
 
+router.get('/:id/reservations', function(req, res) {
+    let sql = `SELECT V.*,R.Name FROM RESERVATION as V, Restaurant as R WHERE V.Cust_id=${req.params.id} AND V.Rstrnt_id=R.Rstrnt_id`;
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        let reservations = result;
+        res.render("user/reservations", {reservations : reservations});
+    });
+});
+
 module.exports = router;
 
