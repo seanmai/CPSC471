@@ -35,7 +35,7 @@ function seedDB() {
                 Date Datetime NOT NULL, \
                 Cust_id int NOT NULL, \
                 PRIMARY KEY (Res_id), \
-                FOREIGN KEY (Cust_id) REFERENCES CUSTOMER(Customer_id), \
+                FOREIGN KEY (Cust_id) REFERENCES USER(user_id), \
                 FOREIGN KEY (Rstrnt_id) REFERENCES Restaurant(Rstrnt_id) )',
             'CREATE TABLE TABLES ( \
                 Rstrnt_id int NOT NULL, \
@@ -99,7 +99,7 @@ function seedDB() {
                 Customer_id int NOT NULL, \
                 Rstrnt_id int NOT NULL, \
                 PRIMARY KEY (Order_id), \
-                FOREIGN KEY (Customer_id) REFERENCES CUSTOMER(Customer_id), \
+                FOREIGN KEY (Customer_id) REFERENCES USER(user_id), \
                 FOREIGN KEY (Rstrnt_id) REFERENCES RESTAURANT(Rstrnt_id) )',
             'CREATE TABLE CONSIST_OF ( \
                 Order_id int NOT NULL, \
