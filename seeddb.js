@@ -104,6 +104,7 @@ function seedDB() {
             'CREATE TABLE CONSIST_OF ( \
                 Order_id int NOT NULL, \
                 Item_id int NOT NULL, \
+                Quantity int NOT NULL, \
                 PRIMARY KEY (Order_id,Item_id), \
                 FOREIGN KEY (Order_id) REFERENCES ORDERS(Order_id), \
                 FOREIGN KEY (Item_id) REFERENCES ITEM(Item_id) )',
@@ -147,8 +148,8 @@ function seedDB() {
             'INSERT INTO ITEM_INGREDIENTS (ITEM_id, Item_ingredients) VALUES (1, "Cheese")',
             'INSERT INTO ITEM (Name, Description, Price, Quantity, Type, Rstrnt_id) VALUES ("Coke","cool",2,4,"Drink",1)',
             'INSERT INTO ORDERS (Pay_method, Date, Address, Pickup_time, Order_type, Customer_id, Rstrnt_id) VALUES ("visa","2019-12-01","Avenue 17th St","11:27:30","delivery",1,1)',
-            'INSERT INTO CONSIST_OF (Order_id, Item_id) VALUES (1, 1)',
-            'INSERT INTO CONSIST_OF (Order_id, Item_id) VALUES (1, 4)',
+            'INSERT INTO CONSIST_OF (Order_id, Item_id, Quantity) VALUES (1, 1, 2)',
+            'INSERT INTO CONSIST_OF (Order_id, Item_id, Quantity) VALUES (1, 4, 1)',
             'INSERT INTO MENU (Name,Meals_type,Rstrnt_id) VALUES ("Lunch set", "Lunch", 1)',
             'INSERT INTO COMPRISES_OF(Menu_id, Item_id) VALUES (1,1)',
             'INSERT INTO COMPRISES_OF(Menu_id, Item_id) VALUES (4,1)',

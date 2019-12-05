@@ -22,8 +22,8 @@ router.get("/add-to-cart/:id", (req, res) => {
         food = result[0];
         cart.add(food, food.Item_id);
         req.session.cart = cart;
-        console.log(cart);
-        console.log(food);
+        // console.log(cart);
+        // console.log(food);
         res.redirect('back');
     });
 });
@@ -54,21 +54,30 @@ router.post("/", function(req, res){
         Pay_method: req.body.paymentOption,
         Date: new Date(Date.now()).toISOString().slice(0, 19).replace('T', ' '),
         Address: req.body.address,
-        // Pickup_time: req.body.pickup_time,
+        Pickup_time: req.body.pickup_time,
         Order_type: req.body.order_type,
         Customer_id: req.user.user_id,
         Rstrnt_id: cart.rstrntId, 
     }
+
     
     let sql = 'INSERT INTO ORDERS SET ?';
     db.query(sql, order, (err, result) => {
         if(err) throw err;
+        // Really bad nesting but will fix later
+        sql = 'INSERT INTO CONSIST_OF (Order_id, Item_id, Quantity) VALUES (?, ?, ?)';
+        let orderId = result.insertId;
+        for(let id in cart.items){
+            db.query(sql, [orderId, id, cart.items[id].qty], (err, result) => {
+                if(err) throw err;
+                console.log(result);
+            });
+        }
         console.log(result);
+
         req.session.cart = {};
         res.redirect("/restaurants");
     });
-
-
 });
 
 module.exports = router;
