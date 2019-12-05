@@ -1,4 +1,4 @@
-.restaurant:hover {
+.restaurant-hover:hover {
     transition: 0.35s ease;
     opacity: 0.65;
     background: #ccc;
