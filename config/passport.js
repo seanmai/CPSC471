@@ -6,7 +6,7 @@ var db = require('../db.js');
 
 module.exports = function(passport) { 
     passport.serializeUser(function(user, done) {
-        done(null, user.user_id);
+        done(null, user);
     });
 
     passport.deserializeUser(function(user, done) {

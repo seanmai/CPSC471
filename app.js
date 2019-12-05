@@ -11,13 +11,22 @@ var express        = require("express"),
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+ } ));
 app.use(passport.initialize());
 require('./config/passport')(passport);
-app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true
-}))
+app.use(passport.session());
+
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.session = req.session;
+    next();
+});
 
 // Uncomment this line to create the database only.
 // createDB();
