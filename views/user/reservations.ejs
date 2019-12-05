@@ -3,25 +3,25 @@
 <div class="container" style="padding-bottom: 100px;">
     <div class="col-md-12">
         <h2>Reservations</h2>
-        <% reservations.forEach((reservation) => { %>
+        <% for(var i = reservations.length-1; i >= 0; i--){ %>
 
                 <div class="col-md-9" style="border-bottom: 1px solid #cccccc; padding-bottom: 15px;">
                     <div class="order-history-item-left" style="padding-top: 15px;">
                         <div class="order-history-name">
-                            <%= reservation.Name %>
+                            <%= reservations[i].Name %>
                         </div>
                         <div class="order-history-payment">
-                            Seats: <%= reservation.Guest_count %>
+                            Seats: <%= reservations[i].Guest_count %>
                         </div>
                     </div>
     
                     <div class="order-history-item-right" style="padding-top: 15px;">
                         <div class="order-history-date">
-                                <%= reservation.Date %>
+                                <%= reservations[i].Date %>
                         </div>
                     </div>
                 </div>
-        <% }); %>
+        <% } %>
     </div>
 </div>
 

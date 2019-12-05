@@ -81,7 +81,6 @@ router.get("/:id/menu", (req, res) => {
 
 router.get("/:id/reservations", middleware.isLoggedIn, (req, res) => {
     let reservations = {};
-
     // Query all reservations from the current date and onwards
     let sql = `SELECT V.* FROM RESERVATION as V, RESTAURANT as R \
                WHERE V.Rstrnt_id = R.Rstrnt_id AND R.Rstrnt_id =${req.params.id} AND V.Date >= NOW()`;

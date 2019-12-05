@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 // Uncomment this line to create the database only.
-// createDB(); 
+// createDB();
 // Uncomment this line to seed the database.
 // seedDB();
 
