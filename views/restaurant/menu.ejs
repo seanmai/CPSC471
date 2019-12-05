@@ -2,8 +2,13 @@
 
 <div class='container'>
     <% menu.forEach((item) => { %>
-        <h3><%= item.Name %></h3>
-        <a href="/checkout/add-to-cart/<%= item.Item_id %>">Add to cart</a>
+        <div style="border: 1px solid #ccc; padding: 15px; margin-top: 30px;">
+            <div style="float: right;">
+                <a href="/checkout/add-to-cart/<%= item.Item_id %>">Add to cart</a>
+            </div>
+            <h3><%= item.Name %></h3>
+            <p><%= item.Description %></p>
+        </div>
     <% }); %>
 </div>
 

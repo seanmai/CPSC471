@@ -1,11 +1,26 @@
 <%- include('../partials/header') %>
 
 <div class='container'>
-        <% reservations.forEach((reservation) => { %>
-            <h3>Guest count: <%= reservation.Guest_count %></h3>
-            <h3>Date: <%= reservation.Date %></h3>
-            <h3>Customer id: <%= reservation.Cust_id %></h3>
-        <% }); %>
-    </div>
+    <h2>Reserve a Table</h2>
+    <form action="/restaurants/<%= restaurantId %>/reservations" target="" method="post">
+        <div class="row mb-3">
+            <div class="col-2">
+                <label for="guest_count">Number of guests</label>
+                <input type="text" id="guest_count" name="guestCount" class="form-control" placeholder="1">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-3">
+                <label for="date">Date</label>
+                <input type="datetime-local" id="date" name="reservationDate" class="form-control" placeholder="Select Date">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input class="btn btn-primary" class="form-control" type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>
 
-<%- include('../partials/footer') %>    
+<%- include('../partials/footer') %>

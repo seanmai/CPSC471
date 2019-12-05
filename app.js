@@ -37,13 +37,11 @@ app.use((req, res, next) => {
 // Requiring Routes
 var indexRoutes = require("./routes/index"),
     restaurantRoutes = require("./routes/restaurant"),
-    ordersRoutes = require("./routes/orders"),
     userRoutes = require("./routes/user"),
     checkoutRoutes = require("./routes/checkout");
 
 app.use("/", indexRoutes);
 app.use("/restaurants", restaurantRoutes);
-app.use("/orders", ordersRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/user", userRoutes);
 // Redirects all other routes that are not specified
