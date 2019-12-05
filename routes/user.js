@@ -9,7 +9,7 @@ router.get("/login", (req, res) => {
 
 router.post('/login', passport.authenticate('local-login', {
     successRedirect : '/restaurants', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    failureRedirect : '/user/login', // redirect back to the signup page if there is an error
 }), (req, res) => {
     if (req.body.remember) {
       req.session.cookie.maxAge = 1000 * 60 * 3;
@@ -18,5 +18,14 @@ router.post('/login', passport.authenticate('local-login', {
     }
     res.redirect('/restaurants');
 });
+
+router.get("/signup", (req, res) => {
+    res.render("user/signup");
+});
+
+router.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/restaurants', // redirect to the secure profile section
+    failureRedirect : '/user/signup', // redirect back to the signup page if there is an error
+}));
 
 module.exports = router;

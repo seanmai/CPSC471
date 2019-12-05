@@ -120,6 +120,11 @@ function seedDB() {
                 PRIMARY KEY (Menu_id,Item_id), \
                 FOREIGN KEY (Menu_id) REFERENCES MENU(Menu_id), \
                 FOREIGN KEY (Item_id) REFERENCES ITEM(Item_id) )',
+            'CREATE TABLE USER ( \
+                user_id int AUTO_INCREMENT NOT NULL, \
+                username VARCHAR(20) NOT NULL, \
+                password VARCHAR(60) NOT NULL, \
+                PRIMARY KEY (User_id) )',
           ];
     sql.forEach((statement) => {
         runSQL(statement);
@@ -147,6 +152,7 @@ function seedDB() {
             'INSERT INTO MENU (Name,Meals_type,Rstrnt_id) VALUES ("Lunch set", "Lunch", 1)',
             'INSERT INTO COMPRISES_OF(Menu_id, Item_id) VALUES (1,1)',
             'INSERT INTO COMPRISES_OF(Menu_id, Item_id) VALUES (4,1)',
+            'INSERT INTO USER(username, password) VALUES ("sean","test")',
           ];
         
     sql.forEach((statement) => {
