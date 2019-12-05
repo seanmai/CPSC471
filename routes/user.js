@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var db = require('../db.js');
+var middleware = require("../middleware");
 
 router.get("/login", (req, res) => {
     res.render("user/login");

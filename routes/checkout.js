@@ -2,8 +2,9 @@ var express = require("express");
 var router = express.Router();
 var db = require('../db.js');
 var Cart = require("../models/cart");
+var middleware = require("../middleware");
 
-router.get("/", function(req, res){
+router.get("/", middleware.isLoggedIn, function(req, res){
     if(!req.session.cart){
         return res.render("checkout/index", {items: null});
     }

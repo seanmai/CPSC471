@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require('../db.js');
+var middleware = require("../middleware");
 
 router.get("/", (req, res) => {
     let restaurants = {};
@@ -34,7 +35,7 @@ router.get("/:id/menu", (req, res) => {
     });
 });
 
-router.get("/:id/reservations", (req, res) => {
+router.get("/:id/reservations", middleware.isLoggedIn, (req, res) => {
     let reservations = {};
 
     // Query all reservations from the current date and onwards
@@ -43,18 +44,23 @@ router.get("/:id/reservations", (req, res) => {
     db.query(sql, (err, result) => {
         if(err) throw err;
         reservations = result;
-        res.render("restaurant/reservation", {reservations : reservations});
+        res.render("restaurant/reservation", {reservations : reservations, restaurantId : req.params.id});
     });
 });
 
 router.post("/:id/reservations", (req, res) => {
-    let sql = 'INSERT INTO RESERVATION VALUES (( \
-               SELECT Rstrnt_id FROM RESTAURANT WHERE Rstrnt_id = <id>), ‘<guest_count>’, ‘<date>’, ( \
-               SELECT User_id FROM CUSTOMER WHERE User_id = <id>))';
-    db.query(sql, (err, result) => {
+    let reservation = {
+        Rstrnt_id: req.params.id,
+        Guest_count: req.body.guestCount,
+        Date: req.body.reservationDate,
+        Cust_id: req.user.user_id
+    }
+
+    let sql = 'INSERT INTO RESERVATION SET ?';
+    db.query(sql, reservation, (err, result) => {
         if(err) throw err;
         reservations = result;
-        res.render("restaurant/reservation", {reservations : reservations});
+        res.redirect(`/restaurants/${req.params.id}`);
     });
 });
 
