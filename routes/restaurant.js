@@ -3,7 +3,6 @@ var router = express.Router();
 var db = require('../db.js');
 
 router.get("/", (req, res) => {
-    console.log(req.user);
     let restaurants = {};
     let sql = 'SELECT * FROM restaurant';
     db.query(sql, (err, result) => {

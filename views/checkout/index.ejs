@@ -1,34 +1,55 @@
 <%- include('../partials/header') %>
 
 <% if(items){ %>
-    
-    <div class="">
-        <% items.forEach(function(item){ %>
-        <div class="checkout-row">
-            <div class="checkout-item checkout-item-qty">
-                <a href="/checkout/cart-reduce-one/<%= item.item.Food_id %>"><i class="glyphicon glyphicon-minus"></i></a>
-                <span style="padding: 0 8px;"><strong><%= item.qty %></strong></span>
-                <a href="/checkout/cart-increase-one/<%= item.item.Food_id %>"<i class="glyphicon glyphicon-plus"></i></a>
-            </div>
-            <div class="checkout-item checkout-item-name">
-                <strong><%= item.item.Name %></strong>
-            </div>
-            <div class="checkout-item checkout-item-price">
-                <span>$<%= item.price.toFixed(2) %></span>
-            </div>
-            <div class="checkout-item checkout-item-remove">
-                <a href="/checkout/cart-remove/<%= item.item.Food_id %>" style="text-decoration: none; font-size: 15px;"><strong>Remove</strong></span></a>
-            </div>
+    <form class="" action="/checkout" method="POST">
+        <h4>Delivery Info</h4>
+        <div class="form-group">
+            <label for="phone">Address</label>
+            <input class="form-control" type="tel" name="address" id="address" placeholder="Address">
         </div>
-        <% }); %>
-    </div>
-    <div class="checkout-total">
-        <p>Subtotal: <span class="checkout-price">$<%= totalPrice.toFixed(2) %></span></p>
-        <p>Tax: <span class="checkout-price">$<%= (totalPrice * 0.05).toFixed(2) %></span></p>
-        <p style="margin-top: 10px;"><strong>Total: <span class="checkout-price">$<%= (totalPrice * 1.05).toFixed(2) %><span></strong></p>
-    </div>
-    <hr>
-    <button type="submit" class="btn btn-primary">Place Order</button>
+        <h4>Delivery Method</h4>
+        <div class="form-group">
+            <select class="" name="deliveryOption" id="deliveryOption">
+                <option value="pickup">Pickup</option>
+                <option value="delivery">Delivery</option>
+            </select>
+        </div>
+        <h4>Payment Info</h4>
+        <div class="form-group">
+            <select class="" name="paymentOption" id="paymentOption">
+                <option value="cash">Cash</option>
+                <option value="credit">Credit Card</option>
+                <option value="debit">Debit Card</option>
+            </select>
+        </div>
+        <div class="">
+            <% items.forEach(function(item){ %>
+            <div class="checkout-row">
+                <div class="checkout-item checkout-item-qty">
+                    <a href="/checkout/cart-reduce-one/<%= item.item.Food_id %>"><i class="glyphicon glyphicon-minus"></i></a>
+                    <span style="padding: 0 8px;"><strong><%= item.qty %></strong></span>
+                    <a href="/checkout/cart-increase-one/<%= item.item.Food_id %>"<i class="glyphicon glyphicon-plus"></i></a>
+                </div>
+                <div class="checkout-item checkout-item-name">
+                    <strong><%= item.item.Name %></strong>
+                </div>
+                <div class="checkout-item checkout-item-price">
+                    <span>$<%= item.price.toFixed(2) %></span>
+                </div>
+                <div class="checkout-item checkout-item-remove">
+                    <a href="/checkout/cart-remove/<%= item.item.Food_id %>" style="text-decoration: none; font-size: 15px;"><strong>Remove</strong></span></a>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <div class="checkout-total">
+            <p>Subtotal: <span class="checkout-price">$<%= totalPrice.toFixed(2) %></span></p>
+            <p>Tax: <span class="checkout-price">$<%= (totalPrice * 0.05).toFixed(2) %></span></p>
+            <p style="margin-top: 10px;"><strong>Total: <span class="checkout-price">$<%= (totalPrice * 1.05).toFixed(2) %><span></strong></p>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
 <% } else { %>
     <div class="row">
         <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
